@@ -2,32 +2,52 @@
 #include "dog.h"
 
 /**
- * *_strcpy - copies the string pointed to by strr
- * including the terminating null byte (\0)
- * to the buffer pointed to by test
- * @test: pointer to the buffer in which we copy the string
- * @strr: string to be copied
+ * _strlen - returns the length of a string
+ * @sh: string to evaluate
  *
- * Return: the pointer to test
+ * Return: the length of the string
  */
-char *_strcpy(char *test, char *strr)
+int _strlen(char *sh)
+{
+	int i;
+
+	i = 0;
+
+	while (sh[i] != '\0')
+	{
+		i++;
+	}
+
+	return (i);
+}
+
+/**
+ * *_strcpy - copies the string pointed to by src
+ * including the terminating null byte (\0)
+ * to the buffer pointed to by dest
+ * @des: pointer to the buffer in which we copy the string
+ * @sr: string to be copied
+ *
+ * Return: the pointer to dest
+ */
+char *_strcpy(char *des, char *sr)
 {
 	int len, i;
 
 	len = 0;
 
-	while (strr[len] != '\0')
+	while (sr[len] != '\0')
 	{
 		len++;
 	}
 
 	for (i = 0; i < len; i++)
 	{
-		test[i] = strr[i];
+		des[i] = sr[i];
 	}
-	test[i] = '\0';
+	des[i] = '\0';
 
-	return (test);
+	return (des);
 }
 
 /**
@@ -43,16 +63,9 @@ dog_t *new_dog(char *name, float age, char *owner)
 	dog_t *dog;
 	int len1, len2;
 
-	len1 = 0;
-	len2 = 0;
-while (name[len1] != '\0')
-	{
-		len1++;
-	}
-while (owner[len2] != '\0')
-	{
-		len2++;
-	}
+	len1 = _strlen(name);
+	len2 = _strlen(owner);
+
 	dog = malloc(sizeof(dog_t));
 	if (dog == NULL)
 		return (NULL);
