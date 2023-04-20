@@ -1,0 +1,55 @@
+#include <stdarg.h>
+#include <stdio.h>
+#include "variadic_functions.h"
+
+/**
+ * print_all - Prints anything
+ * @format: List of types of arguments passed to the function
+ */
+void print_all(const char * const format, ...)
+{
+	va_list args;
+	unsigned int i = 0, j = 0;
+	char *separator = "";
+	const char *type_specifiers = "cifs";
+	char *current_arg;
+
+	va_start(args, format);
+
+	while (format && format[i])
+	{
+		j = 0;
+		while (type_specifiers[j])
+		{
+			if (format[i] == type_specifiers[j])
+			{
+				printf("%s", separator);
+				current_arg = va_arg(args, char *);
+
+				switch (format[i])
+				{
+					case 'c':
+						printf("%c", current_arg);
+						break;
+					case 'i':
+						printf("%d", current_arg);
+						break;
+					case 'f':
+						printf("%f", current_arg);
+						break;
+					case 's':
+						if (current_arg == NULL)
+							printf("(nil)");
+						else
+							printf("%s", current_arg);
+						break;
+				}
+				separator = ", ";
+			}
+			j++;
+		}
+		i++;
+	}
+	printf("\n");
+	va_end(args);
+}
