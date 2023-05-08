@@ -69,7 +69,7 @@ exit(97);
 
 buff = create_buffer(argv[2]);
 f = open(argv[1], O_RDONLY);
-rr = read(from, buff, 1024);
+rr = read(f, buff, 1024);
 tt = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
 do {
@@ -93,7 +93,7 @@ exit(99);
 rr = read(f, buff, 1024);
 tt = open(argv[2], O_WRONLY | O_APPEND);
 
-} while (rt > 0);
+} while (rr > 0);
 
 free(buff);
 close_file(f);
